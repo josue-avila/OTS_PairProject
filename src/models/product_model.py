@@ -56,7 +56,7 @@ class Product(BaseModel):
     def validates_height(self, key, height: float) -> float:
         if not isinstance(height, float):
             raise TypeError('Box height must be float')
-        if 1.0 > height > 100.0:
+        if height < 1.0 or height > 100.0:
             raise ValueError('Box height must be between 1.0cm and 100.0cm')
 
         return height
@@ -65,7 +65,7 @@ class Product(BaseModel):
     def validates_width(self, key, width: float) -> float:
         if not isinstance(width, float):
             raise TypeError('Box width must be float')
-        if 10.0 > width > 100.0:
+        if width < 10.0 or width > 100.0:
             raise ValueError('Box height must be between 10.0cm and 100.0cm')
 
         return width
@@ -74,7 +74,7 @@ class Product(BaseModel):
     def validates_length(self, key, length: float) -> float:
         if not isinstance(length, float):
             raise TypeError('Box length must be float')
-        if 15.0 > length > 100.0:
+        if length < 15.0 or length > 100.0:
             raise ValueError('Box length must be between 15.0cm and 100.0cm')
 
         return length
@@ -83,7 +83,7 @@ class Product(BaseModel):
     def validates_length(self, key, weight: float) -> float:
         if not isinstance(weight, float):
             raise TypeError('Box weight must be float')
-        if 0.0 > weight > 30.0:
+        if weight < 0.0 or weight > 30.0:
             raise ValueError('Box weight must be between 0.0Kg and 30Kg')
 
         return weight
