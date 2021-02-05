@@ -21,3 +21,34 @@ class Product(BaseModel):
         self.length = length
         self.weight = weight
         self.description = description
+
+    @validates('name')
+    def validate_name(self, key, name):
+        if not isinstance(name, str):
+            raise TypeError('Name is not the expected type!')
+        if not name.strip():
+            raise ValueError('Name can not be empty!')
+        if len(name) > 100:
+            raise ValueError('Name is not the expected size!')
+
+        return name
+
+    @validates('description')
+    def validate_description(self, key, description):
+        if not isinstance(description, str):
+            raise TypeError('Description is not the expected type!')
+        if len(description) > 255:
+            raise ValueError('Description is not the expected size!')
+
+        return description
+
+    @validates('price')
+    def validate_price(self, key, price):
+        if not isinstance(price, float):
+            raise TypeError('Price is not the expected type!')
+        if not price:
+            raise ValueError('Price can not be empty!')
+        if price < 14.99:
+            raise ValueError('The price must be higher than R$14,99!')
+
+        return price

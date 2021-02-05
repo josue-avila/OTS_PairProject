@@ -1,5 +1,5 @@
 from src.dao.base_dao import BaseDao
-from src.models.product import Product
+from src.models.product_model import Product
 
 
 class ProductDao(BaseDao):
