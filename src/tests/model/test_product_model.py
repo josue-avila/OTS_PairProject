@@ -62,6 +62,7 @@ class TestProduct():
             obj = Product('Smartphone XPTO', 1599.99, 50.00, 10.00,
                 30.00, 0.800, 'Smartphone com 8GB de RAM')
             obj.height = 150
+            
     # def test_big_value_height_product(self, create_instance):
     #     with pytest.raises(ValueError):
     #         create_instance.height = 150.00
