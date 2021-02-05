@@ -47,8 +47,6 @@ class Product(BaseModel):
     def validate_price(self, key, price):
         if not isinstance(price, float):
             raise TypeError('Price is not the expected type!')
-        if not price:
-            raise ValueError('Price can not be empty!')
         if price < 14.99:
             raise ValueError('The price must be higher than R$14,99!')
 
@@ -60,6 +58,7 @@ class Product(BaseModel):
             raise TypeError('Box height must be float')
         if 1.0 > height > 100.0:
             raise ValueError('Box height must be between 1.0cm and 100.0cm')
+
         return height
 
     @validates('width')
@@ -68,6 +67,7 @@ class Product(BaseModel):
             raise TypeError('Box width must be float')
         if 10.0 > width > 100.0:
             raise ValueError('Box height must be between 10.0cm and 100.0cm')
+
         return width
 
     @validates('length')
@@ -76,6 +76,7 @@ class Product(BaseModel):
             raise TypeError('Box length must be float')
         if 15.0 > length > 100.0:
             raise ValueError('Box length must be between 15.0cm and 100.0cm')
+
         return length
 
     @validates('weight')
@@ -84,4 +85,5 @@ class Product(BaseModel):
             raise TypeError('Box weight must be float')
         if 0.0 > weight > 30.0:
             raise ValueError('Box weight must be between 0.0Kg and 30Kg')
+
         return weight
