@@ -1,6 +1,8 @@
-from src.models.product_model import Product
-from src.models.base_model import BaseModel
+import sys
+sys.path.append(".")
 import pytest
+from src.models.base_model import BaseModel
+from src.models.product_model import Product
 
 
 class TestProduct:
@@ -46,13 +48,10 @@ class TestProduct:
         with pytest.raises(ValueError):
             create_instance.price = 10.99
 
-    def test_not_height_product(self, create_instance):
+    @pytest.mark.parametrize('value', [('Price'), (50), (0), (True)])
+    def test_type_height_product(self, create_instance, value):
         with pytest.raises(TypeError):
-            create_instance.height = 0
-
-    def test_type_height_product(self, create_instance):
-        with pytest.raises(TypeError):
-            create_instance.height = 'Price'
+            create_instance.height = value
 
     def test_small_value_height_product(self, create_instance):
         with pytest.raises(ValueError):
@@ -61,3 +60,16 @@ class TestProduct:
     def test_big_value_height_product(self, create_instance):
         with pytest.raises(ValueError):
             create_instance.height = 150.00
+
+    @pytest.mark.parametrize('value', [('Price'), (50), (0), (True)])
+    def test_type_width_product(self, create_instance, value):
+        with pytest.raises(TypeError):
+            create_instance.width = value
+
+    def test_small_value_width_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.width = 9.99
+
+    def test_big_value_width_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.width = 150.00
