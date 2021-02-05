@@ -62,7 +62,7 @@ class Product(BaseModel):
         return height
 
     @validates('width')
-    def validates_widthgit(self, key, width: float) -> float:
+    def validates_width(self, key, width: float) -> float:
         if not isinstance(width, float):
             raise TypeError('Box width must be float')
         if 10.0 > width > 100.0:
