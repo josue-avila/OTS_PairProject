@@ -1,8 +1,8 @@
 import sys
 sys.path.append(".")
-import pytest
-from src.models.base_model import BaseModel
 from src.models.product_model import Product
+from src.models.base_model import BaseModel
+import pytest
 
 
 class TestProduct:
@@ -73,3 +73,29 @@ class TestProduct:
     def test_big_value_width_product(self, create_instance):
         with pytest.raises(ValueError):
             create_instance.width = 150.00
+
+    @pytest.mark.parametrize("length", ['string', 20])
+    def test_type_length_product(self, create_instance, length):
+        with pytest.raises(TypeError):
+            create_instance.length = length
+
+    def test_small_value_length_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.length = 10.9
+
+    def test_big_value_length_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.length = 110.5
+
+    @pytest.mark.parametrize("weight", ['weight', 110])
+    def test_type_weight_product(self, create_instance, weight):
+        with pytest.raises(TypeError):
+            create_instance.weight = weight
+
+    def test_small_value_weight_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.weight = -1.0
+
+    def test_big_value_weight_product(self, create_instance):
+        with pytest.raises(ValueError):
+            create_instance.weight = 30.5

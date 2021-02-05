@@ -80,7 +80,7 @@ class Product(BaseModel):
         return length
 
     @validates('weight')
-    def validates_length(self, key, weight: float) -> float:
+    def validates_weight(self, key, weight: float) -> float:
         if not isinstance(weight, float):
             raise TypeError('Box weight must be float')
         if weight < 0.0 or weight > 30.0:
