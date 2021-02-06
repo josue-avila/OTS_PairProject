@@ -17,10 +17,22 @@ class ProductResource(BaseResource):
     }
 
     def __init__(self) -> None:
-        self.__dao = ProductDao
+        self.__dao = ProductDao()
         self.__model_type = Product
         super().__init__(self.__dao, self.__model_type)
 
     @marshal_with(fields)
     def get(self, id_=None):
         return super().get(id_)
+
+    @marshal_with(fields)
+    def post(self):
+        return super().post()
+
+    @marshal_with(fields)
+    def put(self, id_: int):
+        return super().put(id_)
+
+    @marshal_with(fields)
+    def delete(self, id_: int):
+        return super().delete(id_)
